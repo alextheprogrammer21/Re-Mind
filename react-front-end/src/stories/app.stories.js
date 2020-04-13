@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import MyButton from "../components/Button";
 import Navigation from "../components/Navigation";
 import Promo from "../components/Promo";
+import yoga from "../img/yoga.jpg";
 
 storiesOf("MyButton", module)
   .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
@@ -15,6 +16,7 @@ storiesOf("Promo", module)
   .add("Left Light Text", () => (
     <Promo
       side="left"
+      img={yoga}
       light
       header="Build Healthy Habits Fast!"
       content="Our app was designed to enable you to quickly build healthy habits"
@@ -23,6 +25,7 @@ storiesOf("Promo", module)
   .add("Right Dark Text", () => (
     <Promo
       side="right"
+      img={yoga}
       header="Build Healthy Habits Fast!"
       content="Our app was designed to enable you to quickly build healthy habits"
     ></Promo>
