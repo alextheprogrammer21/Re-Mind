@@ -6,4 +6,4 @@ VALUES
     '123-456-9876',
     'email@email.com',
     'qwerty'
-  )
+  );
