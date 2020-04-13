@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS activities CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS habits CASCADE;
 DROP TABLE IF EXISTS habits_journal CASCADE;
+DROP TABLE IF EXISTS notifications CASCADE;
 CREATE TABLE activities (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
@@ -39,4 +40,13 @@ CREATE TABLE habits_journal (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   active BOOLEAN DEFAULT TRUE
+);
+create table notifications (
+  id SERIAL PRIMARY KEY NOT NULL,
+  habit_id INTEGER REFERENCES habits(id) ON DELETE CASCADE,
+  notification_type VARCHAR(255),
+  scheduled_time TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  completed BOOLEAN DEFAULT false
 );
