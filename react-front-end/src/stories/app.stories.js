@@ -5,6 +5,7 @@ import Navigation from "../components/Navigation";
 import Promo from "../components/Promo";
 import yoga from "../img/yoga.jpg";
 import SectionTitle from "../components/SectionTitle";
+import Habit from "../components/Habit";
 
 storiesOf("MyButton", module)
   .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
@@ -36,3 +37,6 @@ storiesOf("Section Title", module)
   .add("Your Weekly Summary", () => (
     <SectionTitle name="Your Weekly Summary"></SectionTitle>
   ));
+storiesOf("Individual Habit", module).add("Running", () => (
+  <Habit name="Running" freq="3" icon="🏃🏼‍♂️"></Habit>
+));

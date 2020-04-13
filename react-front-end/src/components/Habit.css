@@ -1,0 +1,16 @@
+.icon {
+  font-size: 3rem;
+  margin-left: 1rem;
+}
+
+.name {
+  position: relative;
+  top: -0.7rem;
+  margin-left: 1rem;
+}
+
+button {
+  float: right;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
