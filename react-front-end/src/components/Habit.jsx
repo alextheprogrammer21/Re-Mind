@@ -5,12 +5,13 @@ import "./Habit.css";
 import Button from "react-bootstrap/Button";
 
 export default function Habit(props) {
+  const data = props.data;
   return (
     <Card>
       <Card.Body>
-        <span class="icon">{props.icon}</span>
+        <span class="icon">{data.icon}</span>
         <span class="name">
-          {props.name} ({props.freq} times a week)
+          {data.name} ({data.frequency} times a week)
         </span>
         <span></span>
         <Button variant="outline-primary" className="mark">

@@ -11,9 +11,9 @@ import {
 
 export default function Dashboard(props) {
   return !props.data ? (
-    <div width={730} height={250}>
-      "You are currently not tracking any activities! Add one to start building
-      your habit today!"
+    <div className="alert alert-primary">
+      You are currently not tracking any activities! Add one to start building
+      your habit today!
     </div>
   ) : (
     <BarChart width={730} height={250} data={props.data} layout="vertical">

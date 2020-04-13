@@ -38,9 +38,15 @@ storiesOf("Section Title", module)
   .add("Your Weekly Summary", () => (
     <SectionTitle name="Your Weekly Summary"></SectionTitle>
   ));
-storiesOf("Individual Habit", module).add("Running", () => (
-  <Habit name="Running" freq="3" icon="🏃🏼‍♂️"></Habit>
+
+const habits = [
+  { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
+  { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
+];
+storiesOf("Single Habit", module).add("Tracking Running", () => (
+  <Habit Show data={habits[0]}></Habit>
 ));
+
 const chartData = [
   {
     name: "Running",
