@@ -3,9 +3,9 @@ const Client = pg.Client;
 
 const options = {
   host: 'drona.db.elephantsql.com',
-  database: 'wquprnon',
-  user: 'wquprnon',
-  password: 'TyvAJ-61ldtnZ9YZetkO2SC5T-jBtXny',
+  database: 'tefxmhou',
+  user: 'tefxmhou',
+  password: 'PxrFvYX--O9mMN7cOvQ2lI61SOX3Qnaf',
 };
 
 const client = new Client(options);
@@ -13,7 +13,7 @@ client.connect();
 
 //This generates a list of all menu items
 const browse = (cb) => {
-  client.query('SELECT * FROM Users;')
+  client.query('SELECT * FROM users;')
     .then(data => {
       cb(null, data.rows);
     })
@@ -23,8 +23,9 @@ const browse = (cb) => {
 //This is a test query
 const testQuery = (cb) => {
 
-  client.query(`SELECT * from Users;`)
+  client.query(`SELECT * from users;`)
     .then(data => {
+      console.log("my data", data.rows)
       cb(null, data.rows);
     })
     .catch(err => cb(err));

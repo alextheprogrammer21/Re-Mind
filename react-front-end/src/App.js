@@ -18,7 +18,7 @@ class App extends Component {
 
       console.log(response.data.message) // Just the message
       this.setState({
-        message: response.data[0].phone_num
+        message: response.data[0].first_name
       });
     }) 
   }
