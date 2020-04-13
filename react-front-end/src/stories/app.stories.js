@@ -4,6 +4,7 @@ import MyButton from "../components/Button";
 import Navigation from "../components/Navigation";
 import Promo from "../components/Promo";
 import yoga from "../img/yoga.jpg";
+import SectionTitle from "../components/SectionTitle";
 
 storiesOf("MyButton", module)
   .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
@@ -29,4 +30,9 @@ storiesOf("Promo", module)
       header="Build Healthy Habits Fast!"
       content="Our app was designed to enable you to quickly build healthy habits"
     ></Promo>
+  ));
+storiesOf("Section Title", module)
+  .add("Empty", () => <SectionTitle></SectionTitle>)
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Your Weekly Summary"></SectionTitle>
   ));
