@@ -7,10 +7,31 @@ const PORT = 8080;
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(Express.static('public'));
 
+// PG database client/connection setup
+const { Pool } = require('pg');
+const dbParams = require('./db/db.js');
+const db = new Pool(dbParams);
+db.connect();
+
+const { testQuery, browse } = require('./db/queries');
+
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
+
+  
+  message: "Seems to work!"
 }));
+
+App.get("/api/test", (req, res) => {
+
+  testQuery((err, items) => {
+    if (err) {
+      console.log("Error")
+    }
+    console.log("here are all the users", items);
+  });
+  
+});
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
