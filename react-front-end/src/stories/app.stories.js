@@ -41,6 +41,23 @@ storiesOf("Section Title", module)
 storiesOf("Individual Habit", module).add("Running", () => (
   <Habit name="Running" freq="3" icon="🏃🏼‍♂️"></Habit>
 ));
-storiesOf("Dashboard Chart", module).add("Sample Chart", () => (
-  <Dashboard></Dashboard>
-));
+const chartData = [
+  {
+    name: "Running",
+    max: 100,
+    current: 75,
+  },
+  {
+    name: "Yoga",
+    max: 100,
+    current: 88,
+  },
+  {
+    name: "Overall",
+    max: 100,
+    current: 76,
+  },
+];
+storiesOf("Dashboard Chart", module)
+  .add("Chart With Data", () => <Dashboard data={chartData}></Dashboard>)
+  .add("Chart With No Data", () => <Dashboard></Dashboard>);
