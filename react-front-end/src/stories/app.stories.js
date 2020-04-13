@@ -13,9 +13,9 @@ storiesOf("MyButton", module)
     <MyButton type="secondary" text="Click me!"></MyButton>
   ));
 storiesOf("Navbar", module).add("Navbar", () => <Navigation></Navigation>);
-storiesOf("Promo", module)
+storiesOf("Promo Banner", module)
   .add("Empty Promo", () => <Promo></Promo>)
-  .add("Left Light Text", () => (
+  .add("Left Light Banner", () => (
     <Promo
       side="left"
       img={yoga}
@@ -24,7 +24,7 @@ storiesOf("Promo", module)
       content="Our app was designed to enable you to quickly build healthy habits"
     ></Promo>
   ))
-  .add("Right Dark Text", () => (
+  .add("Right Dark Banner", () => (
     <Promo
       side="right"
       img={yoga}

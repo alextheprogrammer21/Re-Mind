@@ -16,8 +16,16 @@ export default function Promo(props) {
       <Card className={cardClasses}>
         <Card.Img src={props.img} className={Promo} />
         <Card.ImgOverlay>
-          <Card.Title>{props.header || "Placeholder"}</Card.Title>
-          <Card.Text>{props.content || "Card Body"}</Card.Text>
+          <Card.Title>
+            <mark className={props.light ? "light-mark" : "dark-mark"}>
+              {props.header || "Placeholder"}
+            </mark>
+          </Card.Title>
+          <Card.Text>
+            <mark className={props.light ? "light-mark" : "dark-mark"}>
+              {props.content || "Card Body"}
+            </mark>
+          </Card.Text>
         </Card.ImgOverlay>
       </Card>
     </>

@@ -13,7 +13,9 @@ export default function Habit(props) {
           {props.name} ({props.freq} times a week)
         </span>
         <span></span>
-        <Button variant="outline-primary">Mark Completed</Button>
+        <Button variant="outline-primary" className="mark">
+          Mark Completed
+        </Button>
       </Card.Body>
     </Card>
   );
