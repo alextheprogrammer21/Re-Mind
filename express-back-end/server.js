@@ -13,13 +13,13 @@ const dbParams = require('./db/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+const testString = "test"
 const { testQuery, browse } = require('./db/queries');
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
 
-  
-  message: "Seems to work!"
+  message: "test",
 }));
 
 App.get("/api/test", (req, res) => {
@@ -28,7 +28,7 @@ App.get("/api/test", (req, res) => {
     if (err) {
       console.log("Error")
     }
-    console.log("here are all the users", items);
+      res.send(items);
   });
   
 });
