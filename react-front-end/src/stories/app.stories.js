@@ -37,21 +37,37 @@ storiesOf("Section Title", module)
   .add("Empty", () => <SectionTitle></SectionTitle>)
   .add("Your Weekly Summary", () => (
     <SectionTitle name="Your Weekly Summary"></SectionTitle>
+  ))
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Your Habits"></SectionTitle>
+  ))
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Calendar"></SectionTitle>
   ));
 
 const habits = [
   { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
   { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
 ];
-storiesOf("Single Habit", module).add("Tracking Running", () => (
-  <Habit Show data={habits[0]}></Habit>
-));
+storiesOf("Single Habit", module)
+  .add("Tracking Running", () => <Habit Show data={habits[0]}></Habit>)
+  .add("Tracking Yoga", () => <Habit Show data={habits[1]}></Habit>);
 
 const chartData = [
   {
     name: "Running",
     max: 100,
     current: 75,
+  },
+  {
+    name: "Running",
+    max: 100,
+    current: 10,
+  },
+  {
+    name: "Running",
+    max: 100,
+    current: 46,
   },
   {
     name: "Yoga",
