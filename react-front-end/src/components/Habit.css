@@ -22,3 +22,12 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+
+#dropdown-basic {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-left: 1.3rem;
+}

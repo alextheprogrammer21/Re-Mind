@@ -10,51 +10,9 @@ import Dashboard from "../components/Dashboard";
 import Default from "../components/Habits/Default";
 import Delete from "../components/Habits/Delete";
 import Edit from "../components/Habits/Edit";
+import New from "../components/Habits/New";
 
-storiesOf("MyButton", module)
-  .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
-  .add("Secondary", () => (
-    <MyButton type="secondary" text="Click me!"></MyButton>
-  ));
-storiesOf("Navbar", module).add("Navbar", () => <Navigation></Navigation>);
-storiesOf("Promo Banner", module)
-  .add("Empty Promo", () => <Promo></Promo>)
-  .add("Left Light Banner", () => (
-    <Promo
-      side="left"
-      img={yoga}
-      light
-      header="Build Healthy Habits Fast!"
-      content="Our app was designed to enable you to quickly build healthy habits"
-    ></Promo>
-  ))
-  .add("Right Dark Banner", () => (
-    <Promo
-      side="right"
-      img={yoga}
-      header="Build Healthy Habits Fast!"
-      content="Our app was designed to enable you to quickly build healthy habits"
-    ></Promo>
-  ));
-storiesOf("Section Title", module)
-  .add("Empty", () => <SectionTitle></SectionTitle>)
-  .add("Your Weekly Summary", () => (
-    <SectionTitle name="Your Weekly Summary"></SectionTitle>
-  ))
-  .add("Your Weekly Summary", () => (
-    <SectionTitle name="Your Habits"></SectionTitle>
-  ))
-  .add("Your Weekly Summary", () => (
-    <SectionTitle name="Calendar"></SectionTitle>
-  ));
-
-const habits = [
-  { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
-  { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
-];
-storiesOf("Single Habit", module)
-  .add("Tracking Running", () => <Habit Show data={habits[0]}></Habit>)
-  .add("Tracking Yoga", () => <Habit Show data={habits[1]}></Habit>);
+//--------------Data Declarations----------------------//
 
 const chartData = [
   {
@@ -83,6 +41,59 @@ const chartData = [
     current: 76,
   },
 ];
+
+const habits = [
+  { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
+  { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
+];
+
+const activities = ['Running', 'Yoga', 'Meditating', 'Journaling', 'Time-Boxing', 'Exercising', 'Cooking', 'Programming', 'Morning Routine', 'Evening Routine']
+
+//---------------------_Stories-----------------------//
+
+storiesOf("MyButton", module)
+  .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
+  .add("Secondary", () => (
+    <MyButton type="secondary" text="Click me!"></MyButton>
+  ));
+
+storiesOf("Navbar", module).add("Navbar", () => <Navigation></Navigation>);
+storiesOf("Promo Banner", module)
+  .add("Empty Promo", () => <Promo></Promo>)
+  .add("Left Light Banner", () => (
+    <Promo
+      side="left"
+      img={yoga}
+      light
+      header="Build Healthy Habits Fast!"
+      content="Our app was designed to enable you to quickly build healthy habits"
+    ></Promo>
+  ))
+  .add("Right Dark Banner", () => (
+    <Promo
+      side="right"
+      img={yoga}
+      header="Build Healthy Habits Fast!"
+      content="Our app was designed to enable you to quickly build healthy habits"
+    ></Promo>
+  ));
+
+storiesOf("Section Title", module)
+  .add("Empty", () => <SectionTitle></SectionTitle>)
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Your Weekly Summary"></SectionTitle>
+  ))
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Your Habits"></SectionTitle>
+  ))
+  .add("Your Weekly Summary", () => (
+    <SectionTitle name="Calendar"></SectionTitle>
+  ));
+
+storiesOf("Single Habit", module)
+  .add("Tracking Running", () => <Habit Show data={habits[0]}></Habit>)
+  .add("Tracking Yoga", () => <Habit Show data={habits[1]}></Habit>);
+
 storiesOf("Dashboard Chart", module)
   .add("Chart With Data", () => <Dashboard data={chartData}></Dashboard>)
   .add("Chart With No Data", () => <Dashboard></Dashboard>);
@@ -90,6 +101,8 @@ storiesOf("Dashboard Chart", module)
   storiesOf("Habits", module)
   .add("Current Habit", () => <Default Show data={habits[0]}> </Default>)
   .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>)
-  .add("Edit Habit", () => <Edit Show data={habits[0]}> </Edit>);
+  .add("Edit Habit", () => <Edit Show data={habits[0]}> </Edit>)
+  .add("New Habit", () => <New Show data={habits[0]} activities={activities}> </New>);
+
 
 

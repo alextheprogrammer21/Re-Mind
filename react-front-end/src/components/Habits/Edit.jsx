@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../Habit.css";
 import Button from "react-bootstrap/Button";
 
-export default function Habit(props) {
+export default function Edit(props) {
   const data = props.data;
   return (
     <Card>
