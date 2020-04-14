@@ -9,6 +9,8 @@ import Habit from "../components/Habit";
 import Dashboard from "../components/Dashboard";
 import Default from "../components/Habits/Default";
 import Delete from "../components/Habits/Delete";
+import Edit from "../components/Habits/Edit";
+
 storiesOf("MyButton", module)
   .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
   .add("Secondary", () => (
@@ -87,5 +89,7 @@ storiesOf("Dashboard Chart", module)
 
   storiesOf("Habits", module)
   .add("Current Habit", () => <Default Show data={habits[0]}> </Default>)
-  .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>);
+  .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>)
+  .add("Edit Habit", () => <Edit Show data={habits[0]}> </Edit>);
+
 

@@ -14,8 +14,8 @@ export default function Habit(props) {
           {data.name} ({data.frequency} times a week)
         </span>
         <span></span>
-        <Button variant="danger" className="markLengthened">
-          Delete
+        <Button variant="warning" className="markLengthened">
+          Edit
         </Button>
       </Card.Body>
     </Card>
