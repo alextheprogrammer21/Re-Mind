@@ -11,6 +11,9 @@ import Default from "../components/Habits/Default";
 import Delete from "../components/Habits/Delete";
 import Edit from "../components/Habits/Edit";
 import New from "../components/Habits/New";
+import Next from "../components/Habits/Next";
+import Error from "../components/Habits/Error";
+import Loading from "../components/Habits/Loading";
 
 //--------------Data Declarations----------------------//
 
@@ -47,7 +50,7 @@ const habits = [
   { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
 ];
 
-const activities = ['Running', 'Yoga', 'Meditating', 'Journaling', 'Time-Boxing', 'Exercising', 'Cooking', 'Programming', 'Morning Routine', 'Evening Routine']
+const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga', icon: '🧘'}, {name: 'Reading', icon: '📖'}]
 
 //---------------------_Stories-----------------------//
 
@@ -102,7 +105,10 @@ storiesOf("Dashboard Chart", module)
   .add("Current Habit", () => <Default Show data={habits[0]}> </Default>)
   .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>)
   .add("Edit Habit", () => <Edit Show data={habits[0]}> </Edit>)
-  .add("New Habit", () => <New Show data={habits[0]} activities={activities}> </New>);
+  .add("New Habit", () => <New Show data={habits[0]} activities={activities}> </New>)
+  .add("Create Habit", () => <Next></Next>)
+  .add("Loading", () => <Loading></Loading>)
+  .add("Error", () => <Error></Error>);
 
 
 

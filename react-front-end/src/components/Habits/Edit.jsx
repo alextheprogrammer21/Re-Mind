@@ -14,7 +14,7 @@ export default function Edit(props) {
           {data.name} ({data.frequency} times a week)
         </span>
         <span></span>
-        <Button variant="warning" className="markLengthened">
+        <Button variant="outline-warning" className="markLengthened">
           Edit
         </Button>
       </Card.Body>

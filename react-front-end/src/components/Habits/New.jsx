@@ -9,31 +9,27 @@ export default function New(props) {
   const data = props.data;
 
   const dropdownItems = props.activities.map(activity => {
-    return <Dropdown.Item href="#/action-1">{activity}</Dropdown.Item>
+    return <Dropdown.Item href="#/action-1">{activity.icon} {activity.name}</Dropdown.Item>
   });
     return (
       <Card>
         <Card.Body>
           <Dropdown>
-          <span class="icon">{data.icon} </span>
+          <span class="icon"> 🎯 </span>
   
-    <Dropdown.Toggle variant="success" id="dropdown-basic">
+    <Dropdown.Toggle variant="outline-success" id="dropdown-basic">
       Dropdown Button
     </Dropdown.Toggle>
   
     <Dropdown.Menu>
       {dropdownItems}
     </Dropdown.Menu>
-    <Button variant="warning" className="markLengthened">
-            Edit
+    
+    <Button variant="outline-primary" className="markLengthened">
+            Next
           </Button>
   </Dropdown>
-     
-  
         </Card.Body>
       </Card>
     );
- 
-
-  return dropdownItems;
-}
+ }

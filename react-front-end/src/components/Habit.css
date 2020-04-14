@@ -22,6 +22,26 @@
   padding-left: 2rem;
   padding-right: 2rem;
 }
+.createButton {
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  right: 7%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.backButton {
+  margin: 0;
+  position: absolute;
+  top: 58%;
+  right: 7%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 4.3rem;
+  padding-right: 4.3rem;
+}
 
 #dropdown-basic {
   margin: 0;
@@ -30,4 +50,18 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   margin-left: 1.3rem;
+}
+
+#listGroup {
+  max-width: 15rem;
+}
+
+#listGroupFormatted {
+  width: 15rem;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  right: 40%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
