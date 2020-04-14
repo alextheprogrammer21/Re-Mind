@@ -1,7 +1,4 @@
-const pg = require("pg");
-require("dotenv").config();
-
-const dbParams = {};
+let dbParams = {};
 if (process.env.DATABASE_URL) {
   dbParams.connectionString = process.env.DATABASE_URL;
 } else {
@@ -14,10 +11,4 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const Client = pg.Client;
-
-const client = new Client(dbParams);
-
-client.connect();
-
-module.exports = client;
+module.exports = dbParams;
