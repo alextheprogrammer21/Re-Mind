@@ -7,7 +7,8 @@ import yoga from "../img/yoga.jpg";
 import SectionTitle from "../components/SectionTitle";
 import Habit from "../components/Habit";
 import Dashboard from "../components/Dashboard";
-
+import Default from "../components/Habits/Default";
+import Delete from "../components/Habits/Delete";
 storiesOf("MyButton", module)
   .add("Primary", () => <MyButton type="primary" text="Click me!"></MyButton>)
   .add("Secondary", () => (
@@ -83,3 +84,8 @@ const chartData = [
 storiesOf("Dashboard Chart", module)
   .add("Chart With Data", () => <Dashboard data={chartData}></Dashboard>)
   .add("Chart With No Data", () => <Dashboard></Dashboard>);
+
+  storiesOf("Habits", module)
+  .add("Current Habit", () => <Default Show data={habits[0]}> </Default>)
+  .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>);
+
