@@ -8,21 +8,9 @@ require("dotenv").config();
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(Express.static("public"));
 
-// PG database client/connection setup
-// const { Pool } = require("pg");
-// const dbParams = require("./db/db.js");
-// const db = new Pool(dbParams);
-// db.connect();
+const { testQuery, getUser, getHabits } = require("./db/queries");
 
-const testString = "test";
-const { testQuery, browse } = require("./db/queries");
-
-// Sample GET route
-App.get("/api/data", (req, res) =>
-  res.json({
-    message: "test",
-  })
-);
+// Test call
 
 App.get("/api/test", (req, res) => {
   testQuery((err, items) => {
@@ -32,8 +20,22 @@ App.get("/api/test", (req, res) => {
     res.send(items);
   });
 });
-App.get("/api/test2", (req, res) => {
-  testQuery((err, items) => {
+
+// Get user by ID
+App.get("/api/user/:id", (req, res) => {
+  let id = req.params.id;
+  getUser(id, (err, items) => {
+    if (err) {
+      console.log("Error");
+    }
+    res.send(items);
+  });
+});
+
+// Get habits for user by ID
+App.get("/api/user/:id/habits", (req, res) => {
+  let id = req.params.id;
+  getHabits(id, (err, items) => {
     if (err) {
       console.log("Error");
     }

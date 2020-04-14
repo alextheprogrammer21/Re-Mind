@@ -3,15 +3,6 @@ const dbParams = require("./db.js");
 const db = new Pool(dbParams);
 db.connect();
 
-//This generates a list of all menu items
-const browse = (cb) => {
-  db.query("SELECT * FROM users;")
-    .then((data) => {
-      cb(null, data.rows);
-    })
-    .catch((err) => cb(err));
-};
-
 //This is a test query
 const testQuery = (cb) => {
   db.query(`SELECT * from users;`)
@@ -22,4 +13,28 @@ const testQuery = (cb) => {
     .catch((err) => cb(err));
 };
 
-module.exports = { testQuery, browse };
+// Get User Information
+const getUser = (id, cb) => {
+  db.query(`SELECT * from users where id=${id};`)
+    .then((data) => {
+      console.log("Test user data", data.rows);
+      cb(null, data.rows);
+    })
+    .catch((err) => console.log(err));
+};
+
+// Get Habits Information
+const getHabits = (id, cb) => {
+  db.query(
+    `select * from habits 
+  join activities on activity_id = activities.id 
+  where user_id = ${id};`
+  )
+    .then((data) => {
+      console.log("Test user data", data.rows);
+      cb(null, data.rows);
+    })
+    .catch((err) => console.log(err));
+};
+
+module.exports = { testQuery, getUser, getHabits };
