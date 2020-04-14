@@ -14,6 +14,7 @@ const {
   getDashboard,
   getCalendar,
   recordActivity,
+  deleteHabit,
 } = require("./db/queries");
 
 // Get user by ID
@@ -68,6 +69,22 @@ App.post("/api/habit/:id", (req, res) => {
       console.log("Error");
     }
     res.send(items);
+  });
+});
+
+// Delete habit (deactivate)
+App.post("/api/habit/:id/delete", (req, res) => {
+  let id = req.params.id;
+  deleteHabit(id, (err, items) => {
+    if (err) {
+      console.log("Error");
+      res.sendStatus(404);
+    }
+    if (items > 0) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
   });
 });
 

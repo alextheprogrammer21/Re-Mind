@@ -78,7 +78,7 @@ const getCalendar = (id, cb) => {
     .catch((err) => console.log(err));
 };
 
-// Get Habits Information
+// Record Activity Information
 const recordActivity = (id, cb) => {
   db.query(`insert into habits_journal (habit_id) values (${id});`)
     .then((res) => {
@@ -91,10 +91,24 @@ const recordActivity = (id, cb) => {
     });
 };
 
+// Record Activity Information
+const deleteHabit = (id, cb) => {
+  db.query(`update habits set active=false where id=${id}`)
+    .then((res) => {
+      console.log("reponse:", res.rowCount);
+      cb(null, res.rowCount);
+    })
+    .catch((err) => {
+      cb(err, null);
+      console.log("query error", err);
+    });
+};
+
 module.exports = {
   getUser,
   getHabits,
   getDashboard,
   getCalendar,
   recordActivity,
+  deleteHabit,
 };
