@@ -8,7 +8,7 @@ require("dotenv").config();
 App.use(BodyParser.urlencoded({ extended: false }));
 App.use(Express.static("public"));
 
-const { testQuery, getUser, getHabits } = require("./db/queries");
+const { testQuery, getUser, getHabits, getDashboard } = require("./db/queries");
 
 // Test call
 
@@ -36,6 +36,16 @@ App.get("/api/user/:id", (req, res) => {
 App.get("/api/user/:id/habits", (req, res) => {
   let id = req.params.id;
   getHabits(id, (err, items) => {
+    if (err) {
+      console.log("Error");
+    }
+    res.send(items);
+  });
+});
+
+App.get("/api/user/:id/dashboard", (req, res) => {
+  let id = req.params.id;
+  getDashboard(id, (err, items) => {
     if (err) {
       console.log("Error");
     }
