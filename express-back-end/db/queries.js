@@ -78,4 +78,23 @@ const getCalendar = (id, cb) => {
     .catch((err) => console.log(err));
 };
 
-module.exports = { getUser, getHabits, getDashboard, getCalendar };
+// Get Habits Information
+const recordActivity = (id, cb) => {
+  db.query(`insert into habits_journal (habit_id) values (${id});`)
+    .then((res) => {
+      console.log("reponse:", res);
+      cb(null, res);
+    })
+    .catch((err) => {
+      cb(err, null);
+      console.log(err);
+    });
+};
+
+module.exports = {
+  getUser,
+  getHabits,
+  getDashboard,
+  getCalendar,
+  recordActivity,
+};

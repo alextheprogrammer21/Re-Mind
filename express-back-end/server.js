@@ -13,6 +13,7 @@ const {
   getHabits,
   getDashboard,
   getCalendar,
+  recordActivity,
 } = require("./db/queries");
 
 // Get user by ID
@@ -52,6 +53,17 @@ App.get("/api/user/:id/dashboard", (req, res) => {
 App.get("/api/user/:id/calendar", (req, res) => {
   let id = req.params.id;
   getCalendar(id, (err, items) => {
+    if (err) {
+      console.log("Error");
+    }
+    res.send(items);
+  });
+});
+
+// Record habit activity
+App.post("/api/habit/:id", (req, res) => {
+  let id = req.params.id;
+  recordActivity(id, (err, items) => {
     if (err) {
       console.log("Error");
     }
