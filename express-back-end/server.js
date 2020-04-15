@@ -15,6 +15,7 @@ const {
   getCalendar,
   recordActivity,
   deleteHabit,
+  addHabit,
 } = require("./db/queries");
 
 // Get user by ID
@@ -67,8 +68,10 @@ App.post("/api/habit/:id", (req, res) => {
   recordActivity(id, (err, items) => {
     if (err) {
       console.log("Error");
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(200);
     }
-    res.send(items);
   });
 });
 
@@ -81,6 +84,24 @@ App.post("/api/habit/:id/delete", (req, res) => {
       res.sendStatus(404);
     }
     if (items > 0) {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  });
+});
+
+// Add habit
+App.post("/api/user/:id/habit/:habit/:freq", (req, res) => {
+  const user_id = req.params.id;
+  const habit = req.params.habit;
+  const freq = req.params.freq;
+  addHabit(user_id, habit, freq, (err, items) => {
+    if (err) {
+      console.log("Error");
+      res.sendStatus(404);
+    }
+    if (items.rowCount > 0) {
       res.sendStatus(200);
     } else {
       res.sendStatus(404);

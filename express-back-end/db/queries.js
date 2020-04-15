@@ -16,9 +16,9 @@ const getUser = (id, cb) => {
 // Get Habits Information
 const getHabits = (id, cb) => {
   db.query(
-    `select * from habits 
-  join activities on activity_id = activities.id 
-  where user_id = ${id};`
+    `select habits.*, name, image from habits 
+    right join activities on activity_id = activities.id 
+    where user_id = ${id} and habits.active = true`
   )
     .then((data) => {
       console.log("Test user data", data.rows);
@@ -53,7 +53,7 @@ const getDashboard = (id, cb) => {
     from habits_journal 
     join habits on habit_id = habits.id
     join activities on activity_id = activities.id
-    where habits_journal.created_at > date_trunc('week', current_date) and user_id = ${id}
+    where habits_journal.created_at > date_trunc('week', current_date) and user_id = ${1} and habits.active = true
     group by habit_id, frequency, activities.name;`
   )
     .then((data) => {
@@ -68,7 +68,7 @@ const getCalendar = (id, cb) => {
     from notifications
     join habits on habit_id = habits.id
     join activities on activity_id = activities.id
-    where scheduled_time >= date_trunc('week', current_date) and scheduled_time < date_trunc('week', current_date) + interval '7 days'  and user_id = ${id}
+    where scheduled_time >= date_trunc('week', current_date) and scheduled_time < date_trunc('week', current_date) + interval '7 days'  and user_id = ${id} and habits.active = true
     group by scheduled_time, habit_id, name, image
     order by scheduled_time;`
   )
@@ -104,6 +104,22 @@ const deleteHabit = (id, cb) => {
     });
 };
 
+// Add habit
+const addHabit = (user_id, habit, freq, cb) => {
+  db.query(
+    `INSERT INTO habits (user_id, activity_id, frequency)
+  VALUES (${user_id}, ${habit}, ${freq});`
+  )
+    .then((res) => {
+      console.log("reponse:", res);
+      cb(null, res);
+    })
+    .catch((err) => {
+      cb(err, null);
+      console.log("error ", err);
+    });
+};
+
 module.exports = {
   getUser,
   getHabits,
@@ -111,4 +127,5 @@ module.exports = {
   getCalendar,
   recordActivity,
   deleteHabit,
+  addHabit,
 };
