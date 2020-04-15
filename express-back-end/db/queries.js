@@ -62,6 +62,25 @@ const getDashboard = (id, cb) => {
     })
     .catch((err) => console.log(err));
 };
+
+const calendar = (data) => {
+  let curr = new Date();
+  let week = [];
+  for (let i = 0; i <= 6; i++) {
+    let first = curr.getDate() - curr.getDay() + i;
+    let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
+    week.push({ day: day, plan: [] });
+  }
+  week.forEach((element) => {
+    data.forEach((record) => {
+      let r = record.day.toISOString().slice(0, 10);
+      if (element.day === r) {
+        element.plan.push(record.name);
+      }
+    });
+  });
+  return week;
+};
 const getCalendar = (id, cb) => {
   db.query(
     `select habit_id, date_trunc('day', scheduled_time) as day, name, image
@@ -73,7 +92,8 @@ const getCalendar = (id, cb) => {
     order by scheduled_time;`
   )
     .then((data) => {
-      cb(null, data.rows);
+      const processed = calendar(data.rows);
+      cb(null, processed);
     })
     .catch((err) => console.log(err));
 };
