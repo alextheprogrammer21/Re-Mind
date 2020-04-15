@@ -12,7 +12,7 @@ export default function Loading(props) {
       <Spinner animation="border" role="status">
   <span className="sr-only">Loading...</span>
 </Spinner>
-<p1> Loading... </p1>
+<p1 id="loading"> Loading... </p1>
 </Card.Body>
     </Card>
   )};

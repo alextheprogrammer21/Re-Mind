@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Habit.css";
 import Button from "react-bootstrap/Button";
-import Dropdown from 'react-bootstrap/Dropdown'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 export default function Next(props) {

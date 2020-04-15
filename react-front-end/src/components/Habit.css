@@ -1,3 +1,7 @@
+#loading {
+  text-align: center;
+}
+
 .icon {
   font-size: 3rem;
   margin-left: 1rem;
@@ -41,6 +45,30 @@
   transform: translateY(-50%);
   padding-left: 4.3rem;
   padding-right: 4.3rem;
+}
+
+.frequencyForm {
+  margin: 0;
+  position: absolute;
+  top: 56%;
+  right: 15%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 4.3rem;
+  padding-right: 4.3rem;
+  width: 15rem;
+}
+
+.activityForm {
+  margin: 0;
+  position: absolute;
+  top: 56%;
+  left: 5%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding-left: 4.3rem;
+  padding-right: 4.3rem;
+  width: 17rem;
 }
 
 #dropdown-basic {

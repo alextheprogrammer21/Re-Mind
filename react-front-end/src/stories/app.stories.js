@@ -13,9 +13,13 @@ import Edit from "../components/Habits/Edit";
 import New from "../components/Habits/New";
 import Next from "../components/Habits/Next";
 import Error from "../components/Habits/Error";
+import Confirm from "../components/Habits/Confirm";
 import Loading from "../components/Habits/Loading";
+import ReactDOM from 'react-dom';
 
 //--------------Data Declarations----------------------//
+
+const habitSelected = 0;
 
 const chartData = [
   {
@@ -45,13 +49,35 @@ const chartData = [
   },
 ];
 
-const habits = [
+let habits = [
   { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
   { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
+  { id: 3, name: "Reading", frequency: "2", icon: "‍📖" }
 ];
 
 const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga', icon: '🧘'}, {name: 'Reading', icon: '📖'}]
 
+function deleteHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
+  e.preventDefault();
+  habits = habits.slice(0, habitSelected).concat(habits.slice(habitSelected + 1, habits.length))
+  console.log("newhbits are", habits)
+}
+
+function editHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
+  e.preventDefault();
+  habits[habitSelected].name = "Programming"
+  habits[habitSelected].frequency = "7"
+  habits[habitSelected].icon = "👨‍💻"
+  console.log("newhbits are", habits[habitSelected])
+}
+
+function createHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
+  e.preventDefault();
+  console.log("target",ReactDOM.findDOMNode(New))
+//  habits.push(
+//    {id: 4,}
+//  )
+}
 //---------------------_Stories-----------------------//
 
 storiesOf("MyButton", module)
@@ -102,13 +128,15 @@ storiesOf("Dashboard Chart", module)
   .add("Chart With No Data", () => <Dashboard></Dashboard>);
 
   storiesOf("Habits", module)
-  .add("Current Habit", () => <Default Show data={habits[0]}> </Default>)
-  .add("Delete Habit", () => <Delete Show data={habits[0]}> </Delete>)
-  .add("Edit Habit", () => <Edit Show data={habits[0]}> </Edit>)
-  .add("New Habit", () => <New Show data={habits[0]} activities={activities}> </New>)
+  .add("Current Habit", () => <Default Show data={habits[habitSelected]}  > </Default>)
+  .add("Delete Habit", () => <Delete Show data={habits[habitSelected]} onClick={deleteHabit}> </Delete>)
+  .add("Edit Habit", () => <Edit Show data={habits[habitSelected]} onClick={editHabit}> </Edit>)
+  .add("New Habit", () => <New Show data={habits[habitSelected]} activities={activities} onClick={createHabit}> </New>)
   .add("Create Habit", () => <Next></Next>)
   .add("Loading", () => <Loading></Loading>)
-  .add("Error", () => <Error></Error>);
+  .add("Error", () => <Error></Error>)
+  .add("Confirm", () => <Confirm></Confirm>);
+
 
 
 
