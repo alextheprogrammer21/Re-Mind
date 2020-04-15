@@ -78,6 +78,11 @@ function createHabit(e) { //After doing axios requests, add state to this so it 
 //    {id: 4,}
 //  )
 }
+
+function transitionToConfirm(e) {
+  e.preventDefault();
+  console.log("Transition to the confirm page");
+}
 //---------------------_Stories-----------------------//
 
 storiesOf("MyButton", module)
@@ -129,13 +134,13 @@ storiesOf("Dashboard Chart", module)
 
   storiesOf("Habits", module)
   .add("Current Habit", () => <Default Show data={habits[habitSelected]}  > </Default>)
-  .add("Delete Habit", () => <Delete Show data={habits[habitSelected]} onClick={deleteHabit}> </Delete>)
+  .add("Delete Habit", () => <Delete Show data={habits[habitSelected]} onClick={transitionToConfirm}> </Delete>)
   .add("Edit Habit", () => <Edit Show data={habits[habitSelected]} onClick={editHabit}> </Edit>)
   .add("New Habit", () => <New Show data={habits[habitSelected]} activities={activities} onClick={createHabit}> </New>)
   .add("Create Habit", () => <Next></Next>)
   .add("Loading", () => <Loading></Loading>)
   .add("Error", () => <Error></Error>)
-  .add("Confirm", () => <Confirm></Confirm>);
+  .add("Confirm", () => <Confirm onClickConfirm={deleteHabit} onClickBack={() => console.log("TRANSITION BACK")}></Confirm>);
 
 
 

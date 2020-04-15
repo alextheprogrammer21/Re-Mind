@@ -12,11 +12,11 @@ export default function Confirm(props) {
       <Alert variant="danger">
   <Alert.Heading>Confirm</Alert.Heading>
   <p>Are you sure you would like to proceed?</p>
-  <Button variant="outline-danger">
+  <Button variant="outline-danger" onClick={props.onClickConfirm}>
           Yes
         </Button>
         <p1> </p1> 
-        <Button variant="outline-danger">
+        <Button variant="outline-danger" onClick={props.onClickBack}>
           No
         </Button>
 </Alert>      
