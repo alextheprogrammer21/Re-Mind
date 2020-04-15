@@ -49,12 +49,12 @@ const summary = (data) => {
 };
 const getDashboard = (id, cb) => {
   db.query(
-    `select habit_id, count(habit_id) as current, habits.frequency as frequency, activities.name
-    from habits_journal 
-    join habits on habit_id = habits.id
-    join activities on activity_id = activities.id
-    where habits_journal.created_at > date_trunc('week', current_date) and user_id = ${1} and habits.active = true
-    group by habit_id, frequency, activities.name;`
+    `select habits.id as habit_id, count(habit_id) as current, frequency, name from habits 
+    left join (select * from habits_journal where habits_journal.created_at > date_trunc('week', current_date)) as foo on habit_id = habits.id
+    join activities on  activity_id = activities.id
+    where  user_id = ${id} 
+    group by habits.id, frequency, activities.name;
+    `
   )
     .then((data) => {
       const processed = summary(data.rows);
