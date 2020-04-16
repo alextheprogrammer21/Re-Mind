@@ -15,7 +15,10 @@ export default function Edit(props) {
         </span>
         <span></span>
         <Button variant="outline-warning" className="markLengthened" onClick={props.onClick}> 
-          Edit
+          Confirm
+        </Button>
+        <Button variant="outline-warning" className="markLengthened" onClick={() => {console.log("TRANSITION BACK")}}> 
+          Back
         </Button>
       </Card.Body>
     </Card>

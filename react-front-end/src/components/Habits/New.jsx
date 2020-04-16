@@ -7,6 +7,16 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 export default function New(props) {
 
+  let [activity, setActivity] = React.useState('Running')
+  let [frequency, setFrequency] = React.useState('1')
+  
+  function handleActivityChange(e) {
+    setActivity(e.target.value)
+  }
+  function handleFrequencyChange(e) {
+    setFrequency(e.target.value)
+  }
+
   const dropdownItems = props.activities.map(activity => {
     return <option>{activity.icon} {activity.name}</option>
   });
@@ -18,20 +28,20 @@ export default function New(props) {
           <Form className='activityForm'>
   <Form.Group controlId="exampleForm.SelectCustom">
     <Form.Label></Form.Label>
-    <Form.Control as="select" custom>
+    <Form.Control as="select" custom value={activity} onChange={() => handleActivityChange()}>
     {dropdownItems}
     </Form.Control>
   </Form.Group>
 </Form>
 
-    <Button variant="outline-primary" className="markLengthened" onClick={props.onClick}>
+    <Button variant="outline-primary" className="markLengthened" onClick={() => props.onClick(activity,frequency)}>
             Next
           </Button>
 
   <Form className='frequencyForm'>
   <Form.Group controlId="exampleForm.SelectCustom">
     <Form.Label></Form.Label>
-    <Form.Control as="select" custom>
+    <Form.Control as="select" custom value={frequency} onChange={handleFrequencyChange}>
       <option>1x/week</option>
       <option>2x/week</option>
       <option>3x/week</option>

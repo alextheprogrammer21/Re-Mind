@@ -60,7 +60,7 @@ const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga',
 function deleteHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
   e.preventDefault();
   habits = habits.slice(0, habitSelected).concat(habits.slice(habitSelected + 1, habits.length))
-  console.log("newhbits are", habits)
+  console.log("Habit deleted. Here are the remaining habits", habits)
 }
 
 function editHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
@@ -68,21 +68,17 @@ function editHabit(e) { //After doing axios requests, add state to this so it re
   habits[habitSelected].name = "Programming"
   habits[habitSelected].frequency = "7"
   habits[habitSelected].icon = "👨‍💻"
-  console.log("newhbits are", habits[habitSelected])
+  console.log("Habit edited to programming", habits[habitSelected])
 }
 
-function createHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
-  e.preventDefault();
-  console.log("target",ReactDOM.findDOMNode(New))
-//  habits.push(
-//    {id: 4,}
-//  )
+function createHabit(activity, frequency) { //After doing axios requests, add state to this so it re-renders with the new data
+ habits.push(
+   {id: 4, name: activity, frequency: frequency, icon: '🏃🏼‍♂️'}
+ )
+
+ console.log("does it work", habits)
 }
 
-function transitionToConfirm(e) {
-  e.preventDefault();
-  console.log("Transition to the confirm page");
-}
 //---------------------_Stories-----------------------//
 
 storiesOf("MyButton", module)
@@ -134,10 +130,10 @@ storiesOf("Dashboard Chart", module)
 
   storiesOf("Habits", module)
   .add("Current Habit", () => <Default Show data={habits[habitSelected]}  > </Default>)
-  .add("Delete Habit", () => <Delete Show data={habits[habitSelected]} onClick={transitionToConfirm}> </Delete>)
+  .add("Delete Habit", () => <Delete Show data={habits[habitSelected]} onClick={() => {console.log("Transition to confirm")}}> </Delete>)
   .add("Edit Habit", () => <Edit Show data={habits[habitSelected]} onClick={editHabit}> </Edit>)
   .add("New Habit", () => <New Show data={habits[habitSelected]} activities={activities} onClick={createHabit}> </New>)
-  .add("Create Habit", () => <Next></Next>)
+  // .add("Create Habit", () => <Next></Next>)
   .add("Loading", () => <Loading></Loading>)
   .add("Error", () => <Error></Error>)
   .add("Confirm", () => <Confirm onClickConfirm={deleteHabit} onClickBack={() => console.log("TRANSITION BACK")}></Confirm>);
