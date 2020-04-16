@@ -28,7 +28,7 @@ export default function New(props) {
           <Form className='activityForm'>
   <Form.Group controlId="exampleForm.SelectCustom">
     <Form.Label></Form.Label>
-    <Form.Control as="select" custom value={activity} onChange={() => handleActivityChange()}>
+    <Form.Control as="select" custom value={activity} onChange={handleActivityChange}>
     {dropdownItems}
     </Form.Control>
   </Form.Group>
