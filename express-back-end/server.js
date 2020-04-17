@@ -1,5 +1,6 @@
 require("dotenv").config();
 const Express = require("express");
+const Cron = require("node-cron");
 const App = Express();
 const BodyParser = require("body-parser");
 const PORT = 8080;
@@ -129,7 +130,13 @@ App.post("/sms", (req, res) => {
   });
 });
 
-// Run the script every 10 mins with cron
+// Every 10 minutes, check for notigications, send SMS
+Cron.schedule("*/10 * * * *", () => {
+  console.log("running every 10 minutes!");
+  // sendSms();
+});
+
+// Every week, generate new notifications for active habits
 // TBD
 
 App.listen(PORT, () => {
