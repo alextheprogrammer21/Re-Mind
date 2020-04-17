@@ -1,5 +1,6 @@
 const moment = require("moment");
 
+// Generate this week
 const thisWeek = () => {
   let curr = new Date();
   let week = [];
@@ -11,7 +12,8 @@ const thisWeek = () => {
   return week;
 };
 
-function generateRandomDays(arr, n) {
+//Pick 'n' random days
+const generateRandomDays = (arr, n) => {
   var result = new Array(n),
     len = arr.length,
     taken = new Array(len);
@@ -23,18 +25,20 @@ function generateRandomDays(arr, n) {
     taken[x] = --len in taken ? taken[len] : len;
   }
   return result;
-}
+};
 
-function setReminders(id, freq) {
+// Generate SQL based on week, 'n', and habit_id
+// Next week reminders TBD - if 'current' is false
+const setReminders = (id, freq, current) => {
   const reminders = generateRandomDays(thisWeek(), freq);
   let sql =
     "INSERT INTO notifications (habit_id, notification_type, scheduled_time) VALUES ";
   reminders.forEach((element) => {
-    let timestamp = moment(element).hour(20);
+    let timestamp = moment(element).hour(13);
     sql += `(${id}, 'sms', '${moment(timestamp).format()}'),`;
   });
   const fixed = sql.slice(0, -1).concat(";");
-  console.log(fixed);
-}
+  return fixed;
+};
 
-setReminders(2, 4);
+module.exports = { setReminders };

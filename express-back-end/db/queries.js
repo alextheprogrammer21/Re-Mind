@@ -124,12 +124,15 @@ const deleteHabit = (id, cb) => {
     });
 };
 
-// Add habit
-const addHabit = (user_id, habit, freq, cb) => {
-  db.query(
-    `INSERT INTO habits (user_id, activity_id, frequency)
-  VALUES (${user_id}, ${habit}, ${freq});`
-  )
+// Add habit, set reminders
+const { setReminders } = require("../set_reminders");
+async function addHabit(user_id, habit, freq, cb) {
+  const query = `INSERT INTO habits (user_id, activity_id, frequency)
+  VALUES (${user_id}, ${habit}, ${freq}) RETURNING id;`;
+  const res = await db.query(query);
+  const newId = res.rows[0].id;
+  const sql = setReminders(newId, freq, true);
+  db.query(`${sql}`)
     .then((res) => {
       console.log("reponse:", res);
       cb(null, res);
@@ -138,7 +141,7 @@ const addHabit = (user_id, habit, freq, cb) => {
       cb(err, null);
       console.log("error ", err);
     });
-};
+}
 
 module.exports = {
   getUser,
