@@ -17,7 +17,7 @@ const getPending = (cb) => {
     join habits h on habit_id = h.id
     join users u on user_id = u.id
     join activities a on activity_id = a.id
-    where scheduled_time > current_timestamp - interval '720 minutes' and scheduled_time < current_timestamp + interval '720 minutes'`
+    where scheduled_time >= current_timestamp - interval '720 minutes' and scheduled_time < current_timestamp + interval '720 minutes'`
   )
     .then((data) => {
       cb(data.rows);
@@ -26,7 +26,6 @@ const getPending = (cb) => {
 };
 
 // Send SMS to those notifications
-
 const sendSms = () => {
   getPending((result) => {
     result.forEach((element) => {
@@ -40,12 +39,9 @@ const sendSms = () => {
         .then((message) => console.log(message.sid));
     });
   });
+  db.end();
 };
-
-// Run the script every 10 mins with cron
-// TBD
 
 // Mark them complete
 // TBD
-
-sendSms();
+module.exports = { sendSms };

@@ -19,6 +19,8 @@ const {
   addHabit,
 } = require("./db/queries");
 
+const { sendSms } = require("./send_reminder");
+
 // Get user by ID
 App.get("/api/user/:id", (req, res) => {
   let id = req.params.id;
@@ -126,6 +128,9 @@ App.post("/sms", (req, res) => {
     }
   });
 });
+
+// Run the script every 10 mins with cron
+// TBD
 
 App.listen(PORT, () => {
   // eslint-disable-next-line no-console
