@@ -1,8 +1,9 @@
+require("dotenv").config();
 const Express = require("express");
 const App = Express();
 const BodyParser = require("body-parser");
 const PORT = 8080;
-require("dotenv").config();
+const MessagingResponse = require("twilio").twiml.MessagingResponse;
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
@@ -105,6 +106,23 @@ App.post("/api/user/:id/habit/:habit/:freq", (req, res) => {
       res.sendStatus(200);
     } else {
       res.sendStatus(404);
+    }
+  });
+});
+
+// Listen to incoming SMS, record activity
+App.post("/sms", (req, res) => {
+  const id = parseInt(req.body.Body);
+  const twiml = new MessagingResponse();
+
+  recordActivity(id, (err, items) => {
+    if (err) {
+      console.log("Error");
+      res.sendStatus(404);
+    } else {
+      twiml.message("Thanks! Keep up the good work!");
+      res.writeHead(200, { "Content-Type": "text/xml" });
+      res.end(twiml.toString());
     }
   });
 });

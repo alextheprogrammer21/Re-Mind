@@ -10,9 +10,6 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 
-// Mark them complete
-// Run the script every 10 mins with cron
-
 // Script to query the database and see if there are pending notfications
 const getPending = (cb) => {
   db.query(
@@ -29,13 +26,14 @@ const getPending = (cb) => {
 };
 
 // Send SMS to those notifications
+
 const sendSms = () => {
   getPending((result) => {
     result.forEach((element) => {
       console.log(element);
       client.messages
         .create({
-          body: `Hey ${element.first_name}. Reminder to do ${element.name} from re:mind! Have you completed it?`,
+          body: `Hey ${element.first_name}. Reminder to do ${element.name} from re:mind! Have you completed it? Reply with ${element.habit_id} to record activity`,
           from: "+19893751056",
           to: `${element.phone}`,
         })
@@ -43,5 +41,11 @@ const sendSms = () => {
     });
   });
 };
+
+// Run the script every 10 mins with cron
+// TBD
+
+// Mark them complete
+// TBD
 
 sendSms();
