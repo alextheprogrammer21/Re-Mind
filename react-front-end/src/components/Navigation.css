@@ -13,3 +13,8 @@ nav {
 .navbar-brand {
   font-family: "Pacifico", cursive;
 }
+
+username {
+  color: white;
+  font-weight: bold;
+}

@@ -20,6 +20,10 @@ const {
   addHabit,
 } = require("./db/queries");
 
+
+App.get("/api/test/:id", (req, res) => {
+  res.send(req.params.id);
+});
 const { sendSms } = require("./send_reminder");
 
 // Get user by ID

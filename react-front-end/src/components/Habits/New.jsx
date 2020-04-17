@@ -18,7 +18,7 @@ export default function New(props) {
   }
 
   const dropdownItems = props.activities.map(activity => {
-    return <option>{activity.icon} {activity.name}</option>
+    return <option>{activity.name}</option>
   });
     return (
       <Card>
@@ -28,14 +28,14 @@ export default function New(props) {
           <Form className='activityForm'>
   <Form.Group controlId="exampleForm.SelectCustom">
     <Form.Label></Form.Label>
-    <Form.Control as="select" custom value={activity} onChange={handleActivityChange}>
+    <Form.Control as="select" custom value={activity.name} onChange={handleActivityChange}>
     {dropdownItems}
     </Form.Control>
   </Form.Group>
 </Form>
 
     <Button variant="outline-primary" className="markLengthened" onClick={() => props.onClick(activity,frequency)}>
-            Next
+            Add
           </Button>
 
   <Form className='frequencyForm'>

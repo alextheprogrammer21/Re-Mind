@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+justify-content: center;
+}
+
+.clickText {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+ol.breadcrumb {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
