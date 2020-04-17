@@ -18,6 +18,11 @@ const {
   addHabit,
 } = require("./db/queries");
 
+
+App.get("/api/test/:id", (req, res) => {
+  res.send(req.params.id);
+});
+
 // Get user by ID
 App.get("/api/user/:id", (req, res) => {
   let id = req.params.id;
