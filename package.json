@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "start": "(cd express-back-end && npm run start) & (cd react-front-end && npm start)"
-  }
-}
