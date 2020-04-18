@@ -5,6 +5,7 @@ import Dashboard from '../src/components/Dashboard'
 import Navigation from '../src/components/Navigation'
 import SectionTitle from '../src/components/SectionTitle'
 import New from '../src/components/Habits/New'
+import Edit from '../src/components/Habits/Edit'
 import Delete from '../src/components/Habits/Delete'
 import Confirm from '../src/components/Habits/Confirm'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
@@ -65,9 +66,10 @@ export default function Homepage(props) {
   ]
   )
 
-  function deleteHabit(e) { 
-    e.preventDefault();
-    habits = habits.slice(0, 0).concat(habits.slice(0 + 1, habits.length))
+  function deleteHabit(confirmId) { 
+    // e.preventDefault();
+    console.log("heres the conformId", confirmId)
+    habits = habits.slice(0, confirmId-1).concat(habits.slice(confirmId-1 + 1, habits.length))
     setHabits([...habits]);
     console.log("Habit deleted. Here are the remaining habits", habits)
     setDeleteBool(false)
@@ -75,8 +77,8 @@ export default function Homepage(props) {
     setConfirmBool(false)
   }
   
-  function editHabit(e) { 
-    e.preventDefault();
+  function editHabit(id, stuff) { 
+    // e.preventDefault();
     habits[0].name = "Programming"
     habits[0].frequency = "7"
     habits[0].icon = "👨‍💻"
@@ -91,7 +93,9 @@ export default function Homepage(props) {
       }
     });
 
-    let addedHabit={name: activity, frequency: frequency, icon: iconUse }
+    let idVal = habits[habits.length -1].id + 1
+    console.log("id val is",frequency[0])
+    let addedHabit={id: idVal, name: activity, frequency: frequency[0], icon: iconUse }
     setHabits([...habits, addedHabit])
 
    
@@ -113,10 +117,15 @@ export default function Homepage(props) {
       const confirmId = null;
     }
     if (confirmBool && confirmId == singleHabit.id) {
-      return <Confirm onClickConfirm={deleteHabit} onClickBack={() => {  setDeleteBool(false); setConfirmId(null); setConfirmBool(false);}}/>
+      return <Confirm onClickConfirm={() => {deleteHabit(confirmId)}} onClickBack={() => {  setDeleteBool(false); setConfirmId(null); setConfirmBool(false);}}/>
     } else {
     return <Delete data={singleHabit} onClick={() => {setConfirmId(singleHabit.id); setConfirmBool(true)}}/>
     }
+  })
+
+  const listOfEditHabits = habits.map(singleHabit => {
+    return <Edit data={singleHabit}/> 
+    
   })
   // React.useEffect(() => {
 
@@ -146,6 +155,11 @@ export default function Homepage(props) {
     : <div> </div>
     }
     
+    {editBool
+    ? listOfEditHabits
+    : <div> </div>
+    }
+
     {!deleteBool && !editBool 
     ? listOfHabits
     : <div></div>
@@ -159,10 +173,10 @@ export default function Homepage(props) {
     <Breadcrumb >
     <div className='clickText'>
   <Breadcrumb.Item onClick={() => {setCreateBool(true)}}>New</Breadcrumb.Item>
-  <Breadcrumb.Item href="https://getbootstrap.com/docs/4.0/components/breadcrumb/">
+  <Breadcrumb.Item onClick={() => {setEditBool(true); setDeleteBool(false)}}>
     Edit
   </Breadcrumb.Item>
-  <Breadcrumb.Item onClick={() => {setDeleteBool(true)}}>Delete</Breadcrumb.Item>
+  <Breadcrumb.Item onClick={() => {setDeleteBool(true); setEditBool(false)}}>Delete</Breadcrumb.Item>
   </div>
 </Breadcrumb>
     <p></p>
