@@ -27,7 +27,9 @@ console.log("props", props)
 
         {editId 
     ? <div></div>
-    : <Button variant="outline-warning" className="mark" onClick={() => {setEditId(data.id)}}>Edit</Button>
+    : <div><Button variant="outline-warning" className="mark" onClick={() => {setEditId(data.id)}}>Edit</Button>
+    <Button variant="outline-warning" className="mark" onClick={props.onCancel}>Cancel</Button>
+    </div>
     }
 
         

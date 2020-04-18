@@ -132,12 +132,12 @@ export default function Homepage(props) {
     if (confirmBool && confirmId == singleHabit.id) {
       return <Confirm onClickConfirm={() => {deleteHabit(confirmId)}} onClickBack={() => {  setDeleteBool(false); setConfirmId(null); setConfirmBool(false);}}/>
     } else {
-    return <Delete data={singleHabit} onClick={() => {setConfirmId(singleHabit.id); setConfirmBool(true)}}/>
+    return <Delete data={singleHabit} onClick={() => {setConfirmId(singleHabit.id); setConfirmBool(true)}} onCancel={() => {setCreateBool(false); setDeleteBool(false); setEditBool(false)}}/>
     }
   })
 
   const listOfEditHabits = habits.map(singleHabit => {
-    return <Edit data={singleHabit} onClick={editHabit}/> 
+    return <Edit data={singleHabit} onClick={editHabit} onCancel={() => {setCreateBool(false); setDeleteBool(false); setEditBool(false)}}/> 
     
   })
   // React.useEffect(() => {
@@ -179,7 +179,7 @@ export default function Homepage(props) {
     }
     <p></p>
     {createBool
-    ?<New activities={activities} onClick={createHabit}></New>
+    ?<New activities={activities} onClick={createHabit} onCancel={() => {setCreateBool(false); setDeleteBool(false); setEditBool(false)}}></New>
     :<div></div>
     }
     <p></p>

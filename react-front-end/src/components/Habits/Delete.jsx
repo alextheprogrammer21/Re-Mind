@@ -17,6 +17,9 @@ export default function Habit(props) {
         <Button variant="outline-danger" className="markLengthened" onClick={props.onClick}>
           Delete
         </Button>
+        <Button variant="outline-danger" className="markLengthened" onClick={props.onCancel}>
+          Cancel
+        </Button>
       </Card.Body>
     </Card>
   );

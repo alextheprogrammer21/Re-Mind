@@ -38,6 +38,9 @@ export default function New(props) {
             Add
           </Button>
 
+          <Button variant="outline-primary" className="markLengthened" onClick={props.onCancel}>
+            Cancel
+          </Button>
   <Form className='frequencyForm'>
   <Form.Group controlId="exampleForm.SelectCustom">
     <Form.Label></Form.Label>
