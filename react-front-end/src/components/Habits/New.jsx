@@ -34,7 +34,7 @@ export default function New(props) {
   </Form.Group>
 </Form>
 
-    <Button variant="outline-primary" className="markLengthened" onClick={() => props.onClick(activity,frequency)}>
+    <Button variant="outline-primary" className="markLengthened" onClick={() => props.onClick(activity,frequency, props.id)}>
             Add
           </Button>
 

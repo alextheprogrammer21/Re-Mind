@@ -77,12 +77,25 @@ export default function Homepage(props) {
     setConfirmBool(false)
   }
   
-  function editHabit(id, stuff) { 
+  function editHabit(activity, frequency, id) { 
     // e.preventDefault();
-    habits[0].name = "Programming"
-    habits[0].frequency = "7"
-    habits[0].icon = "👨‍💻"
-    console.log("Habit edited to programming", habits[0])
+
+    let iconUse = activities.map(act => {
+      if (act.name === activity) {
+        return act.icon
+      }
+    });
+
+    habits.map(habit => {
+      if (habit.id == id) {
+        habit.name = activity
+        habit.frequency = frequency[0]
+        habit.icon = iconUse
+    
+      }
+    });
+    setHabits([...habits]);
+    setEditBool(false)
   }
 
   function createHabit(activity, frequency) { 
@@ -124,7 +137,7 @@ export default function Homepage(props) {
   })
 
   const listOfEditHabits = habits.map(singleHabit => {
-    return <Edit data={singleHabit}/> 
+    return <Edit data={singleHabit} onClick={editHabit}/> 
     
   })
   // React.useEffect(() => {
@@ -172,7 +185,7 @@ export default function Homepage(props) {
     <p></p>
     <Breadcrumb >
     <div className='clickText'>
-  <Breadcrumb.Item onClick={() => {setCreateBool(true)}}>New</Breadcrumb.Item>
+  <Breadcrumb.Item onClick={() => {setCreateBool(true); setDeleteBool(false); setEditBool(false)}}>New</Breadcrumb.Item>
   <Breadcrumb.Item onClick={() => {setEditBool(true); setDeleteBool(false)}}>
     Edit
   </Breadcrumb.Item>
