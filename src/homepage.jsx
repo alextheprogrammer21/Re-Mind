@@ -11,42 +11,8 @@ import Confirm from '../src/components/Habits/Confirm'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './App.css';
 
-// let habits = [
-//   { id: 1, name: "Running", frequency: "3", icon: "🏃🏼‍♂️" },
-//   { id: 2, name: "Yoga", frequency: "4", icon: "🧘‍" },
-//   { id: 3, name: "Reading", frequency: "2", icon: "‍📖" }
-// ];
 
-
-const chartData = [
-  {
-    name: "Running",
-    max: 100,
-    current: 75,
-  },
-  {
-    name: "Running",
-    max: 100,
-    current: 10,
-  },
-  {
-    name: "Running",
-    max: 100,
-    current: 46,
-  },
-  {
-    name: "Yoga",
-    max: 100,
-    current: 88,
-  },
-  {
-    name: "Overall",
-    max: 100,
-    current: 76,
-  },
-];
-
-const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga', icon: '🧘'}, {name: 'Reading', icon: '📖'}]
+const activities = [{id: 1, name: 'Yoga', image: '	🧘‍♂️'}, {id: 2, name: 'Running', image: '🏃🏼‍♂️'}, {id: 3,name: 'Praying', image: '🙏'}, {id: 4,name: 'Drinking Water', image: '🚰'}, {id: 5,name: 'Reading', image: '📚'}, {id: 6,name: 'Meditation', image: '🧘‍♂️'}, {id: 7,name: 'Walking', image: '🚶‍♂️'}, {id: 8,name: 'Cycling', image: '🚲'}, {id: 9,name: 'Working Out', image: '💪'}, {id: 10,name: 'Crossword', image: '🖊'}, {id: 11,name: 'Sudoku', image: '🧩'}, {id: 12,name: 'Connect with friends', image: '🤩'}, {id: 13,name: 'Check in with family', image: '👨‍👩‍👦'}]
 
 
 export default function Homepage(props) {
@@ -56,64 +22,129 @@ export default function Homepage(props) {
   let [deleteBool, setDeleteBool] = React.useState(false)
   let [confirmBool, setConfirmBool] = React.useState(false)
   let [confirmId, setConfirmId] = React.useState(null)
+  let [calendarData, setCalendarData] = React.useState([
+    {
+      day: '2020-04-20',
+      plan: []
+    }
+  ])
+  let [chartData, setChartData] = React.useState([
+    {
+      name: "Running",
+      max: 100,
+      current: 75
+    }
+  ])
   let [habits, setHabits] = React.useState([
     {
       id: 1,
       name: 'Running',
       frequency: '3',
-      icon: '🏃🏼‍♂️'
+      image: '🏃🏼‍♂️'
     }
   ]
   )
 
+  React.useEffect(() => {
+
+    console.log("test")
+    Promise.all([
+      Promise.resolve(axios.get('/api/user/1/habits')),        
+      Promise.resolve(axios.get('/api/user/1/dashboard')),
+      Promise.resolve(axios.get('/api/user/1/calendar'))
+    ]).then((all) => {
+      // console.log("HERES DA DATA",all[2].data)
+
+      setHabits(all[0].data)
+      setChartData(all[1].data)
+      setCalendarData(all[2].data)
+    })
+  }, []);
+
   function deleteHabit(confirmId) { 
     // e.preventDefault();
     console.log("heres the conformId", confirmId)
-    habits = habits.slice(0, confirmId-1).concat(habits.slice(confirmId-1 + 1, habits.length))
-    setHabits([...habits]);
-    console.log("Habit deleted. Here are the remaining habits", habits)
     setDeleteBool(false)
     setConfirmId(null)
     setConfirmBool(false)
+
+    return axios.post(`/api/habit/${confirmId}/delete`)
+    .then(() => {
+      console.log("did it delete?")
+      for (let i = 0; i < habits.length; i++) {
+        if (habits[i].id == confirmId) {
+          habits.splice(i,1);
+        }
+      }
+      setHabits([...habits]);
+      })
+
   }
-  
+
   function editHabit(activity, frequency, id) { 
     // e.preventDefault();
 
-    let iconUse = activities.map(act => {
+    let imageUse = activities.map(act => {
       if (act.name === activity) {
-        return act.icon
+        return act.image
       }
     });
-
-    habits.map(habit => {
-      if (habit.id == id) {
-        habit.name = activity
-        habit.frequency = frequency[0]
-        habit.icon = iconUse
-    
-      }
-    });
-    setHabits([...habits]);
     setEditBool(false)
+    let activityId = null; 
+    
+    activities.map(act => {
+      if (act.name == activity) {
+        activityId = act.id
+      }
+    });
+    console.log("AcitivtyID",activityId)
+    return axios.post(`/api/habit/${id}/edit/${activityId}/${frequency[0]}`)
+    .then(() => {
+      habits.map(habit => {
+        if (habit.id == id) {
+          habit.name = activity
+          habit.frequency = frequency[0]
+          habit.image = imageUse
+      
+        }
+      });
+      setHabits([...habits]);
+    })
   }
 
   function createHabit(activity, frequency) { 
     
-    let iconUse = activities.map(act => {
+    console.log('activity', activity)
+    let imageUse = activities.map(act => {
       if (act.name === activity) {
-        return act.icon
+        return act.image
+      }
+    });
+    let activityId = null; 
+    
+    activities.map(act => {
+      if (act.name == activity) {
+        activityId = act.id
       }
     });
 
     let idVal = habits[habits.length -1].id + 1
     console.log("id val is",frequency[0])
-    let addedHabit={id: idVal, name: activity, frequency: frequency[0], icon: iconUse }
-    setHabits([...habits, addedHabit])
-
-   
+    let addedHabit={id: idVal, name: activity, frequency: frequency[0], image: imageUse }
     setCreateBool(false)
+
+    console.log("activity id",activityId)
+    return axios.post(`/api/user/1/habit/${activityId}/${frequency[0]}`)
+    .then(() => {
+      console.log("is it postin?")
+      setHabits([...habits, addedHabit])
+    })
+
    }
+
+   const calendarList = calendarData.map(singleCalendar => {
+    return <p>{singleCalendar.day} {singleCalendar.plan}</p>
+  });
 
    const listOfHabits = habits.map(singleHabit => {
     return <Habit data={singleHabit}/> 
@@ -140,14 +171,6 @@ export default function Homepage(props) {
     return <Edit data={singleHabit} onClick={editHabit} onCancel={() => {setCreateBool(false); setDeleteBool(false); setEditBool(false)}}/> 
     
   })
-  // React.useEffect(() => {
-
-  //   Promise.all([
-  //     Promise.resolve(axios.get('/api/user/1/habits')),        
-  //   ]).then((all) => {
-  //     console.log("heres the data", all)
-  //   })
-  // }, []);
 
   return(
     <div className="App">
@@ -195,6 +218,7 @@ export default function Homepage(props) {
     <p></p>
     <SectionTitle name={'Your Calendar'}/>
     <p></p>
+    {calendarList}
     <button>
       Fetch Data
     </button> 

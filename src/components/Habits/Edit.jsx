@@ -5,7 +5,7 @@ import "../Habit.css";
 import Button from "react-bootstrap/Button";
 import New from './New'
 
-const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga', icon: '🧘'}, {name: 'Reading', icon: '📖'}]
+const activities = [{name: 'Yoga', image: '	🧘‍♂️'}, {name: 'Running', image: '🏃🏼‍♂️'}, {name: 'Praying', image: '🙏'}, {name: 'Drinking Water', image: '🚰'}, {name: 'Reading', image: '📚'}, {name: 'Meditation', image: '🧘‍♂️'}, {name: 'Walking', image: '🚶‍♂️'}, {name: 'Cycling', image: '🚲'}, {name: 'Working Out', image: '💪'}, {name: 'Crossword', image: '🖊'}, {name: 'Sudoku', image: '🧩'}, {name: 'Connect with friends', image: '🤩'}, {name: 'Check in with family', image: '👨‍👩‍👦'}]
 
 export default function Edit(props) {
 console.log("props", props)
@@ -18,7 +18,7 @@ console.log("props", props)
 
       {editId 
     ? <New activities={activities} id={data.id} onClick={props.onClick} />
-    : <div><span class="icon">{data.icon}</span>
+    : <div><span class="icon">{data.image}</span>
     <span class="name">
       {data.name} ({data.frequency} times a week)
     </span></div>

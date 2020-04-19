@@ -7,7 +7,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 export default function New(props) {
 
-  let [activity, setActivity] = React.useState('Running')
+  let [activity, setActivity] = React.useState('Yoga')
   let [frequency, setFrequency] = React.useState('1')
   
   function handleActivityChange(e) {

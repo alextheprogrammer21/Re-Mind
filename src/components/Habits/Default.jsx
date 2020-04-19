@@ -26,7 +26,7 @@ function markComplete(e) {
   return (
     <Card>
       <Card.Body>
-        <span class="icon">{data.icon}</span>
+        <span class="icon">{data.image}</span>
         <span class="name">
           {data.name} ({data.frequency} times a week)
         </span>
