@@ -8,7 +8,6 @@ import New from './New'
 const activities = [{name: 'Yoga', image: '	🧘‍♂️'}, {name: 'Running', image: '🏃🏼‍♂️'}, {name: 'Praying', image: '🙏'}, {name: 'Drinking Water', image: '🚰'}, {name: 'Reading', image: '📚'}, {name: 'Meditation', image: '🧘‍♂️'}, {name: 'Walking', image: '🚶‍♂️'}, {name: 'Cycling', image: '🚲'}, {name: 'Working Out', image: '💪'}, {name: 'Crossword', image: '🖊'}, {name: 'Sudoku', image: '🧩'}, {name: 'Connect with friends', image: '🤩'}, {name: 'Check in with family', image: '👨‍👩‍👦'}]
 
 export default function Edit(props) {
-console.log("props", props)
   let [editId, setEditId] = React.useState(null)
   const data = props.data;
   return (

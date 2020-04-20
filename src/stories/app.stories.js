@@ -60,7 +60,6 @@ const activities = [{name: 'Running', icon: '🏃🏼‍♂️'}, {name: 'Yoga',
 function deleteHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
   e.preventDefault();
   habits = habits.slice(0, habitSelected).concat(habits.slice(habitSelected + 1, habits.length))
-  console.log("Habit deleted. Here are the remaining habits", habits)
 }
 
 function editHabit(e) { //After doing axios requests, add state to this so it re-renders with the new data
@@ -68,7 +67,6 @@ function editHabit(e) { //After doing axios requests, add state to this so it re
   habits[habitSelected].name = "Programming"
   habits[habitSelected].frequency = "7"
   habits[habitSelected].icon = "👨‍💻"
-  console.log("Habit edited to programming", habits[habitSelected])
 }
 
 function createHabit(activity, frequency) { //After doing axios requests, add state to this so it re-renders with the new data
@@ -76,7 +74,6 @@ function createHabit(activity, frequency) { //After doing axios requests, add st
    {id: 4, name: activity, frequency: frequency, icon: '🏃🏼‍♂️'}
  )
 
- console.log("does it work", habits)
 }
 
 //---------------------_Stories-----------------------//

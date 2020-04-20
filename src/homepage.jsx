@@ -49,14 +49,11 @@ export default function Homepage(props) {
 
   React.useEffect(() => {
 
-    console.log("test")
     Promise.all([
       Promise.resolve(axios.get('/api/user/1/habits')),        
       Promise.resolve(axios.get('/api/user/1/dashboard')),
       Promise.resolve(axios.get('/api/user/1/calendar'))
     ]).then((all) => {
-      // console.log("HERES DA DATA",all[2].data)
-
       setHabits(all[0].data)
       setChartData(all[1].data)
       setCalendarData(all[2].data)
@@ -74,15 +71,12 @@ export default function Homepage(props) {
   }, [])
   
   function deleteHabit(confirmId) { 
-    // e.preventDefault();
-    console.log("heres the conformId", confirmId)
     setDeleteBool(false)
     setConfirmId(null)
     setConfirmBool(false)
 
     return axios.post(`/api/habit/${confirmId}/delete`)
     .then(() => {
-      console.log("did it delete?")
       for (let i = 0; i < habits.length; i++) {
         if (habits[i].id == confirmId) {
           habits.splice(i,1);
@@ -109,7 +103,6 @@ export default function Homepage(props) {
         activityId = act.id
       }
     });
-    console.log("AcitivtyID",activityId)
     return axios.post(`/api/habit/${id}/edit/${activityId}/${frequency[0]}`)
     .then(() => {
       habits.map(habit => {
@@ -123,7 +116,6 @@ export default function Homepage(props) {
 
   function createHabit(activity, frequency) { 
     
-    console.log('activity', activity)
     let imageUse = activities.map(act => {
       if (act.name === activity) {
         return act.image
@@ -138,14 +130,11 @@ export default function Homepage(props) {
     });
 
     let idVal = habits[habits.length -1].id + 1
-    console.log("id val is",frequency[0])
     let addedHabit={id: idVal, name: activity, frequency: frequency[0], image: imageUse }
     setCreateBool(false)
 
-    console.log("activity id",activityId)
     return axios.post(`/api/user/1/habit/${activityId}/${frequency[0]}`)
     .then(() => {
-      console.log("is it postin?")
       setHabits([...habits, addedHabit])
     })
 
