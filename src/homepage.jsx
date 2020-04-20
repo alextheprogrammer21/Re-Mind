@@ -9,8 +9,7 @@ import Edit from '../src/components/Habits/Edit'
 import Delete from '../src/components/Habits/Delete'
 import Confirm from '../src/components/Habits/Confirm'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css';
+import Calendar from './components/Calendar'
 import './App.css';
 
 
@@ -153,8 +152,7 @@ export default function Homepage(props) {
    }
 
    const calendarList = calendarData.map(singleCalendar => {
-    return <p>
-      {singleCalendar.day} {singleCalendar.plan} </p>
+    return singleCalendar
   });
 
    const listOfHabits = habits.map(singleHabit => {
@@ -230,10 +228,8 @@ export default function Homepage(props) {
     <SectionTitle name={'Your Calendar'}/>
     <p></p>
     <div>
-      {calendarList}
-
+      <Calendar></Calendar>
       {/* <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null */}
-}/>
     </div>
     <Breadcrumb >
     <div className='clickText'>
