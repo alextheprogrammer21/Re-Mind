@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
+import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../Habit.css";
 import Button from "react-bootstrap/Button";
@@ -20,9 +21,12 @@ function markComplete(e) {
   setInterval(() => {
     setIsComplete(false)
   }, timeUntil12);
+
+  return axios.post(`/api/habit/${data.id}`)
 }
 
   const data = props.data;
+
   return (
     <Card>
       <Card.Body>

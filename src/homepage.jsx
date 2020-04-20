@@ -48,7 +48,6 @@ export default function Homepage(props) {
   ]
   )
 
-  console.log("the value of calendar is ", calendar)
   React.useEffect(() => {
 
     console.log("test")
@@ -65,6 +64,16 @@ export default function Homepage(props) {
     })
   }, []);
 
+  React.useEffect(() => {
+      setInterval(() => {
+        axios.get('/api/user/1/dashboard')
+        .then((data) => {
+          setChartData(data.data)
+        })
+      }, 5000);
+ 
+  }, [])
+  
   function deleteHabit(confirmId) { 
     // e.preventDefault();
     console.log("heres the conformId", confirmId)
@@ -144,7 +153,8 @@ export default function Homepage(props) {
    }
 
    const calendarList = calendarData.map(singleCalendar => {
-    return <p>{singleCalendar.day} {singleCalendar.plan}</p>
+    return <p>
+      {singleCalendar.day} {singleCalendar.plan} </p>
   });
 
    const listOfHabits = habits.map(singleHabit => {
@@ -221,7 +231,8 @@ export default function Homepage(props) {
     <p></p>
     <div>
       {calendarList}
-      <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null
+
+      {/* <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null */}
 }/>
     </div>
     <Breadcrumb >
