@@ -105,11 +105,8 @@ export default function Homepage(props) {
     return axios.post(`/api/habit/${id}/edit/${activityId}/${frequency[0]}`)
     .then(() => {
       habits.map(habit => {
-        if (habit.id == id) {
-          habit.name = activity
-          habit.frequency = frequency[0]
-          habit.image = imageUse
-      
+        if (habit.id === id) {
+          habit.frequency = frequency[0]      
         }
       });
       setHabits([...habits]);
@@ -224,7 +221,7 @@ export default function Homepage(props) {
     <p></p>
     <div>
       {calendarList}
-      <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date === calendar[0] ? <p>It's Sunday!</p> : null
+      <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null
 }/>
     </div>
     <Breadcrumb >
