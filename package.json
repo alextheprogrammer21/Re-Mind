@@ -6,8 +6,10 @@
     "axios": "^0.18.1",
     "bootstrap": "^4.4.1",
     "classnames": "^2.2.6",
+    "gantt-schedule-timeline-calendar": "^2.6.8",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0",
+    "react-calendar": "^3.0.1",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
     "recharts": "^1.8.5"

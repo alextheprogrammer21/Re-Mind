@@ -25,14 +25,18 @@ export default function New(props) {
         <Card.Body>
           <span class="icon">🎯</span>
   
-          <Form className='activityForm'>
-  <Form.Group controlId="exampleForm.SelectCustom">
-    <Form.Label></Form.Label>
-    <Form.Control as="select" custom value={activity.name} onChange={handleActivityChange}>
-    {dropdownItems}
-    </Form.Control>
-  </Form.Group>
-</Form>
+          {props.edit
+    ? props.name
+    : <div> <Form className='activityForm'>
+    <Form.Group controlId="exampleForm.SelectCustom">
+      <Form.Label></Form.Label>
+      <Form.Control as="select" custom value={activity.name} onChange={handleActivityChange}>
+      {dropdownItems}
+      </Form.Control>
+    </Form.Group>
+  </Form> </div>
+    }
+          
 
     <Button variant="outline-primary" className="markLengthened" onClick={() => props.onClick(activity,frequency, props.id)}>
             Add

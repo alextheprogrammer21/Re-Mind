@@ -17,7 +17,7 @@ console.log("props", props)
       <Card.Body>
 
       {editId 
-    ? <New activities={activities} id={data.id} onClick={props.onClick} />
+    ? <New activities={activities} id={data.id} onClick={props.onClick} edit={'true'} name={data.name}/>
     : <div><span class="icon">{data.image}</span>
     <span class="name">
       {data.name} ({data.frequency} times a week)

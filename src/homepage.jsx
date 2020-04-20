@@ -9,6 +9,8 @@ import Edit from '../src/components/Habits/Edit'
 import Delete from '../src/components/Habits/Delete'
 import Confirm from '../src/components/Habits/Confirm'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
 import './App.css';
 
 
@@ -22,6 +24,7 @@ export default function Homepage(props) {
   let [deleteBool, setDeleteBool] = React.useState(false)
   let [confirmBool, setConfirmBool] = React.useState(false)
   let [confirmId, setConfirmId] = React.useState(null)
+  let [calendar, setCalendar] = React.useState([new Date(),'2020-04-25'])
   let [calendarData, setCalendarData] = React.useState([
     {
       day: '2020-04-20',
@@ -45,6 +48,7 @@ export default function Homepage(props) {
   ]
   )
 
+  console.log("the value of calendar is ", calendar)
   React.useEffect(() => {
 
     console.log("test")
@@ -218,10 +222,11 @@ export default function Homepage(props) {
     <p></p>
     <SectionTitle name={'Your Calendar'}/>
     <p></p>
-    {calendarList}
-    <button>
-      Fetch Data
-    </button> 
+    <div>
+      {calendarList}
+      <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date === calendar[0] ? <p>It's Sunday!</p> : null
+}/>
+    </div>
     <Breadcrumb >
     <div className='clickText'>
   <Breadcrumb.Item href="#">About</Breadcrumb.Item>
