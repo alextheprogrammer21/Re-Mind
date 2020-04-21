@@ -18,7 +18,7 @@ export default function Dashboard(props) {
   ) : (
     <BarChart width={750} height={250} data={props.data} layout="vertical">
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis type="number" />{" "}
+      <XAxis type="number" domain={[0, 100]} />{" "}
       <YAxis dataKey="name" type="category" width={100} />
       <Tooltip />
       <Legend />
