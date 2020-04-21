@@ -10,7 +10,7 @@ import {
 } from "recharts";
 
 export default function Dashboard(props) {
-  const width = window.innerWidth > 750 ? 750 : window.innerWidth * 0.5;
+  const width = window.innerWidth > 750 ? 750 : window.innerWidth * 0.8;
 
   return !props.data ? (
     <div className="alert alert-primary">
