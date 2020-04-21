@@ -45,7 +45,7 @@ export default function Habit(props) {
           {data.name} ({data.frequency} times a week)
         </span>
         {isComplete ? (
-          <Button variant="primary" className="mark">
+          <Button variant="primary" disabled className="mark">
             Done For The Day
           </Button>
         ) : (

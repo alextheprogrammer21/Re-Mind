@@ -25,6 +25,12 @@
   margin-top: 1rem;
   margin-right: 1rem;
 }
+.nomarg {
+  margin-top: 0;
+}
+.noright {
+  margin-right: 0;
+}
 
 .markLengthened {
   float: right;
