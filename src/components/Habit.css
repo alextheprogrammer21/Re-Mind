@@ -13,6 +13,13 @@
   margin-left: 1rem;
 }
 
+.hab {
+  margin-bottom: 0.5rem;
+}
+.hab-inside {
+  padding: 0.5rem;
+}
+
 .mark {
   float: right;
   margin-top: 1rem;

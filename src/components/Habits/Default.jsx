@@ -38,8 +38,8 @@ export default function Habit(props) {
       your habit today!
     </div>
   ) : (
-    <Card>
-      <Card.Body>
+    <Card className="hab">
+      <Card.Body className="hab-inside">
         <span className="icon">{data.image}</span>
         <span className="name">
           {data.name} ({data.frequency} times a week)
