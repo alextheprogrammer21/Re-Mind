@@ -16,7 +16,7 @@ export default function Dashboard(props) {
       your habit today!
     </div>
   ) : (
-    <BarChart width={730} height={250} data={props.data} layout="vertical">
+    <BarChart width={750} height={250} data={props.data} layout="vertical">
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis type="number" /> <YAxis dataKey="name" type="category" />
       <Tooltip />

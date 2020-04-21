@@ -1,65 +1,71 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import './Calendar.css';
-import axios from 'axios';
-
-
-
+import Table from "react-bootstrap/Table";
+import "./Calendar.css";
+import axios from "axios";
+import Container from "react-bootstrap/Container";
 
 export default function Calendar(props) {
+  let [calendarData, setCalendarData] = React.useState([
+    { plan: ["m"] },
+    { plan: ["t"] },
+    { plan: ["w"] },
+    { plan: ["t"] },
+    { plan: ["f"] },
+    { plan: ["s"] },
+    { plan: ["s"] },
+  ]);
+  axios.get("/api/user/1/calendar").then((data) => {
+    setCalendarData(data.data);
+  });
 
-  let [calendarData, setCalendarData] = React.useState([{plan:["m"]}, {plan:["t"]}, {plan:["w"]}, {plan:["t"]}, {plan:["f"]}, {plan:["s"]}, {plan:["s"]}])
-  axios.get('/api/user/1/calendar')
-  .then((data) => {
-    setCalendarData(data.data)
-  }) 
-
-  let mondayIcons = calendarData[0].plan.map(monday => {
-    return monday
+  let mondayIcons = calendarData[0].plan.map((monday) => {
+    return monday;
   });
-  let tuesdayIcons = calendarData[1].plan.map(tuesday => {
-    return tuesday
+  let tuesdayIcons = calendarData[1].plan.map((tuesday) => {
+    return tuesday;
   });
-  let wednesdayIcons = calendarData[2].plan.map(wednesday => {
-    return wednesday
+  let wednesdayIcons = calendarData[2].plan.map((wednesday) => {
+    return wednesday;
   });
-  let thursdayIcons = calendarData[3].plan.map(thursday => {
-    return thursday
+  let thursdayIcons = calendarData[3].plan.map((thursday) => {
+    return thursday;
   });
-  let fridayIcons = calendarData[4].plan.map(friday => {
-    return friday
+  let fridayIcons = calendarData[4].plan.map((friday) => {
+    return friday;
   });
-  let saturdayIcons = calendarData[5].plan.map(saturday => {
-    return saturday
+  let saturdayIcons = calendarData[5].plan.map((saturday) => {
+    return saturday;
   });
-  let sundayIcons = calendarData[6].plan.map(sunday => {
-    return sunday
+  let sundayIcons = calendarData[6].plan.map((sunday) => {
+    return sunday;
   });
   return (
-    <Card>
-      <Card.Body>
-      <table id='customers'>
-  <tr>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th>Saturday</th>
-    <th>Sunday</th>
-  </tr>
-  <tr>
-  <td>{mondayIcons}</td>
-    <td>{tuesdayIcons}</td>
-    <td>{wednesdayIcons}</td>
-    <td>{thursdayIcons}</td>
-    <td>{fridayIcons}</td>
-    <td>{saturdayIcons}</td>
-    <td>{sundayIcons}</td>
-  </tr>
-</table>
-        
-      </Card.Body>
-    </Card>
+    <Container>
+      <Table bordered>
+        <thead>
+          <tr>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{mondayIcons}</td>
+            <td>{tuesdayIcons}</td>
+            <td>{wednesdayIcons}</td>
+            <td>{thursdayIcons}</td>
+            <td>{fridayIcons}</td>
+            <td>{saturdayIcons}</td>
+            <td>{sundayIcons}</td>
+          </tr>
+        </tbody>
+      </Table>
+    </Container>
   );
 }
