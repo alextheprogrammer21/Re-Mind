@@ -18,10 +18,16 @@ export default function Dashboard(props) {
   ) : (
     <BarChart width={750} height={250} data={props.data} layout="vertical">
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis type="number" /> <YAxis dataKey="name" type="category" />
+      <XAxis type="number" />{" "}
+      <YAxis dataKey="name" type="category" width={100} />
       <Tooltip />
       <Legend />
-      <Bar dataKey="current" fill="#03d1fd" barSize={25} />
+      <Bar
+        dataKey="current"
+        name="Current Progress"
+        fill="#03d1fd"
+        barSize={25}
+      />
     </BarChart>
   );
 }

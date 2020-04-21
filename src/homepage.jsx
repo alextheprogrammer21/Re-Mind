@@ -219,13 +219,15 @@ export default function Homepage(props) {
   return (
     <div className="App">
       <Navigation></Navigation>
-      <p></p> {/* repeated empty p tags to add spacing */}
+      <br />
+      <br />
       <SectionTitle name={"Your Weekly Summary"} />
       <p></p>
       <div className="dashboard">
         <Dashboard data={chartData} />
       </div>
-      <p></p>
+      <br />
+      <br />
       <SectionTitle name={"Your Habits"} />
       <p></p>
       <Container>
@@ -258,7 +260,9 @@ export default function Homepage(props) {
                 setEditBool(false);
               }}
             >
-              New
+              <small>
+                <u>New</u>
+              </small>
             </Col>
             <Col
               md="auto"
@@ -267,7 +271,9 @@ export default function Homepage(props) {
                 setDeleteBool(false);
               }}
             >
-              Edit
+              <small>
+                <u>Edit</u>
+              </small>
             </Col>
             <Col
               md="auto"
@@ -276,18 +282,23 @@ export default function Homepage(props) {
                 setEditBool(false);
               }}
             >
-              Delete
+              <small>
+                <u>Delete</u>
+              </small>
             </Col>
           </Row>
         </Container>
       </Container>
-      <p></p>
+      <br />
+      <br />
       <SectionTitle name={"Your Calendar"} />
       <p></p>
       <div>
         <Calendar></Calendar>
         {/* <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null */}
       </div>
+      <br />
+      <br />
       <Breadcrumb>
         <div className="clickText">
           <Breadcrumb.Item href="#">About</Breadcrumb.Item>
