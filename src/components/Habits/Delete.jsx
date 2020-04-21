@@ -7,17 +7,25 @@ import Button from "react-bootstrap/Button";
 export default function Habit(props) {
   const data = props.data;
   return (
-    <Card>
-      <Card.Body>
+    <Card className="hab">
+      <Card.Body className="hab-inside">
         <span class="icon">{data.image}</span>
         <span class="name">
           {data.name} ({data.frequency} times a week)
         </span>
         <span></span>
-        <Button variant="outline-danger" className="markLengthened" onClick={props.onClick}>
+        <Button
+          variant="outline-danger"
+          className="markLengthened"
+          onClick={props.onClick}
+        >
           Delete
         </Button>
-        <Button variant="outline-danger" className="markLengthened" onClick={props.onCancel}>
+        <Button
+          variant="outline-danger"
+          className="markLengthened"
+          onClick={props.onCancel}
+        >
           Cancel
         </Button>
       </Card.Body>
