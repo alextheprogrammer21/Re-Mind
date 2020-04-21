@@ -24,48 +24,39 @@ const activities = [
 export default function Edit(props) {
   let [editId, setEditId] = React.useState(null);
   const data = props.data;
-  return (
+  return editId ? (
+    <New
+      activities={activities}
+      id={data.id}
+      onClick={props.onClick}
+      edit={"true"}
+      name={data.name}
+    />
+  ) : (
     <Card className="hab">
       <Card.Body className="hab-inside">
-        {editId ? (
-          <New
-            activities={activities}
-            id={data.id}
-            onClick={props.onClick}
-            edit={"true"}
-            name={data.name}
-          />
-        ) : (
-          <>
-            <span class="icon">{data.image}</span>
-            <span class="name">
-              {data.name} ({data.frequency} times a week)
-            </span>
-          </>
-        )}
-
-        {editId ? (
-          <div></div>
-        ) : (
-          <span>
-            <Button
-              variant="outline-warning"
-              className="mark"
-              onClick={() => {
-                setEditId(data.id);
-              }}
-            >
-              Edit
-            </Button>
-            <Button
-              variant="outline-warning"
-              className="mark"
-              onClick={props.onCancel}
-            >
-              Cancel
-            </Button>
-          </span>
-        )}
+        <span class="icon">{data.image}</span>
+        <span class="name">
+          {data.name} ({data.frequency} times a week)
+        </span>
+        <span>
+          <Button
+            variant="outline-warning"
+            className="mark"
+            onClick={() => {
+              setEditId(data.id);
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="outline-warning"
+            className="mark"
+            onClick={props.onCancel}
+          >
+            Cancel
+          </Button>
+        </span>
       </Card.Body>
     </Card>
   );
