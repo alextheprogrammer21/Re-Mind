@@ -56,13 +56,27 @@ export default function Calendar(props) {
         </thead>
         <tbody>
           <tr>
-            <td>{mondayIcons}</td>
-            <td>{tuesdayIcons}</td>
-            <td>{wednesdayIcons}</td>
-            <td>{thursdayIcons}</td>
-            <td>{fridayIcons}</td>
-            <td>{saturdayIcons}</td>
-            <td>{sundayIcons}</td>
+            <td>
+              <span className="cal-icon">{mondayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{tuesdayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{wednesdayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{thursdayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{fridayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{saturdayIcons}</span>
+            </td>
+            <td>
+              <span className="cal-icon">{sundayIcons}</span>
+            </td>
           </tr>
         </tbody>
       </Table>
