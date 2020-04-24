@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import "./Calendar.css";
 import axios from "axios";
@@ -42,44 +41,93 @@ export default function Calendar(props) {
   });
   return (
     <Container>
-      <Table bordered>
-        <thead>
-          <tr>
-            <th>Monday</th>
-            <th>Tuesday</th>
-            <th>Wednesday</th>
-            <th>Thursday</th>
-            <th>Friday</th>
-            <th>Saturday</th>
-            <th>Sunday</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <span className="cal-icon">{mondayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{tuesdayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{wednesdayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{thursdayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{fridayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{saturdayIcons}</span>
-            </td>
-            <td>
-              <span className="cal-icon">{sundayIcons}</span>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
+      {window.innerWidth < 750 ? (
+        <Table bordered>
+          <tbody>
+            <tr>
+              <th>Monday</th>
+              <td>
+                <span className="cal-icon">{mondayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Tuesday</th>
+              <td>
+                <span className="cal-icon">{tuesdayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Wednesday</th>
+              <td>
+                <span className="cal-icon">{wednesdayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Thursday</th>
+              <td>
+                <span className="cal-icon">{thursdayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Friday</th>
+              <td>
+                <span className="cal-icon">{fridayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Saturday</th>
+              <td>
+                <span className="cal-icon">{saturdayIcons}</span>
+              </td>
+            </tr>
+            <tr>
+              <th>Sunday</th>
+              <td>
+                <span className="cal-icon">{sundayIcons}</span>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      ) : (
+        <Table bordered>
+          <thead>
+            <tr>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span className="cal-icon">{mondayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{tuesdayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{wednesdayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{thursdayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{fridayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{saturdayIcons}</span>
+              </td>
+              <td>
+                <span className="cal-icon">{sundayIcons}</span>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      )}
     </Container>
   );
 }
