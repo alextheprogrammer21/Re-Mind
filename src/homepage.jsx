@@ -295,7 +295,6 @@ export default function Homepage(props) {
       <p></p>
       <div>
         <Calendar></Calendar>
-        {/* <Calendar defaultValue={calendar} tileContent={({ date, view }) => view === 'month' && date.getDay() === 0 ? <p>🎯</p> : null */}
       </div>
       <br />
       <br />
