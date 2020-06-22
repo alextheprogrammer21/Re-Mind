@@ -1,4 +1,5 @@
 {
+  "homepage": "https://alextheprogrammer21.github.io/Re-Mind",
   "name": "react-front-end",
   "version": "0.1.0",
   "private": true,
@@ -15,6 +16,8 @@
     "recharts": "^1.8.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -37,6 +40,7 @@
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addons": "^5.3.18",
     "@storybook/preset-create-react-app": "^2.1.1",
-    "@storybook/react": "^5.3.18"
+    "@storybook/react": "^5.3.18",
+    "gh-pages": "^3.1.0"
   }
 }
