@@ -12,7 +12,7 @@ export default function Navigation() {
         <Navbar.Brand href="#home">re:mind</Navbar.Brand>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            Logged In As: <strong>Artur</strong>
+            Logged In As: <strong>Admin</strong>
             {/* <Button variant="outline-light" className="login">
               Log In
             </Button> */}
