@@ -11,7 +11,7 @@ https://alextheprogrammer21.github.io/Re-Mind/
 
 !["screenshot of homepage"](https://raw.githubusercontent.com/alextheprogrammer21/Re-Mind/master/images/1.PNG)
 !["Adding a new habit"](https://raw.githubusercontent.com/alextheprogrammer21/Re-Mind/master/images/2.PNG)
-!["Deleting a habit"](hthttps://raw.githubusercontent.com/alextheprogrammer21/Re-Mind/master/images/3.PNG)
+!["Deleting a habit"](https://raw.githubusercontent.com/alextheprogrammer21/Re-Mind/master/images/3.PNG)
 ## Dependencies
 
 - React
