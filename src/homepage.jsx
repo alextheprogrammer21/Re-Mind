@@ -55,9 +55,9 @@ export default function Homepage(props) {
 
   React.useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get("/api/user/1/habits")),
-      Promise.resolve(axios.get("/api/user/1/dashboard")),
-      Promise.resolve(axios.get("/api/user/1/calendar")),
+      Promise.resolve(axios.get("https://remindapp-server.herokuapp.com/api/user/1/habits")),
+      Promise.resolve(axios.get("https://remindapp-server.herokuapp.com/api/user/1/dashboard")),
+      Promise.resolve(axios.get("https://remindapp-server.herokuapp.com/api/user/1/calendar")),
     ]).then((all) => {
       setHabits(all[0].data);
       setChartData(all[1].data);
