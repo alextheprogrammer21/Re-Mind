@@ -1,4 +1,4 @@
- # Devware Project
+ # Re:Mind
 
 A wellness app for habit tracking created with React and Express.
 
