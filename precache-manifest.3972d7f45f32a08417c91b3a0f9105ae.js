@@ -1,26 +1,26 @@
 self.__precacheManifest = [
   {
-    "revision": "94936fbbe25fd47a5a5d",
+    "revision": "225a7f54b53b445ca881",
     "url": "/Re-Mind/static/css/main.b1588c4b.chunk.css"
   },
   {
-    "revision": "94936fbbe25fd47a5a5d",
-    "url": "/Re-Mind/static/js/main.15a46ce4.chunk.js"
+    "revision": "225a7f54b53b445ca881",
+    "url": "/Re-Mind/static/js/main.b4906585.chunk.js"
   },
   {
     "revision": "50139f73ae97e2a2a97b",
     "url": "/Re-Mind/static/js/runtime~main.354dccb0.js"
   },
   {
-    "revision": "d0571d2403e53f22ea34",
+    "revision": "dddfec7f7d303aa92843",
     "url": "/Re-Mind/static/css/2.db278149.chunk.css"
   },
   {
-    "revision": "d0571d2403e53f22ea34",
-    "url": "/Re-Mind/static/js/2.5f8dc880.chunk.js"
+    "revision": "dddfec7f7d303aa92843",
+    "url": "/Re-Mind/static/js/2.19d37cb7.chunk.js"
   },
   {
-    "revision": "6e58bc33b81e4ab8da6267892ccb64dd",
+    "revision": "6e046c87932c3d7c1168e1bad8100e11",
     "url": "/Re-Mind/index.html"
   }
 ];
